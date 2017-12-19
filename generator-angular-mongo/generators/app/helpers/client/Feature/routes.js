@@ -5,6 +5,6 @@ module.exports.generate = function (data, runner, _srcPath, destPath) {
 
   console.log(_srcPath);
   
-  copier.copyTpl(runner, _srcPath +  '/feature/_routes.js', destPath + _.camelCase(data.name) + '/routes.js', data);
+  copier.copyTpl(runner, _srcPath +  '/feature/_routes.js', destPath + _.camelCase(data.plural) + '/routes.js', data);
 
 };

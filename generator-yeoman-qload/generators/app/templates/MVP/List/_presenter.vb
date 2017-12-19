@@ -12,35 +12,31 @@ Namespace CRM.<%=data.plural%>.List
         Public Sub New(view As <%=data.interfaceName%>, repositoryManager As RepositoryManager)
             Me._repositoryManager = repositoryManager
             Me._view = view
-            Me._view.Loading = False
-
-            '_createView = createEnquiryView
+            Me._view.IsLoading = False
 
             WireUpEvents()         
         End Sub
 
-        Private Sub WireUpEvents()
-           ' AddHandler _view.Editing, AddressOf OnEditing
-           ' AddHandler _view.Adding, AddressOf OnAdding
-     
+         Private Sub WireUpEvents()
+           AddHandler _view.Loading, AddressOf OnLoading
         End Sub
 
 #End Region
 
 #Region "Event Handlers"
-  
-        Private Sub OnAddEnquiry(sender As Object, e As EventArgs)
-            'ShowAddEnquiryDialog()
+    
+        Private Sub OnLoading(sender As Object, e As EventArgs)
+            LoadData()
         End Sub
 
-        Private Sub OnEditEnquiry(sender As Object, e As EventArgs(Of Integer))
-            'ShowEditEnqiryDialog(e.Data)
-        End Sub
-
+     
 #End Region
 
 #Region "Private Methods"
 
+        Private Sub LoadData()
+            
+        End Sub
 
 #End Region
 

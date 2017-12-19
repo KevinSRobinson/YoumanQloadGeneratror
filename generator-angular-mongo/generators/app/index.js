@@ -73,13 +73,13 @@ module.exports = class extends Generator {
     var appDetails = {
       appName: this.props.appName,
       appTitle: 'Generated App',
-      data: null,
+      data: models,
       _: _      
     };
 
     this.config.set('destPath', this.props.destPath);
     configHelper.saveOutputPath(this, this.props.destPath);
-    console.log('Saved destPath = ' + configHelper.getOutputPath(this));
+   // console.log('Saved destPath = ' + configHelper.getOutputPath(this));
 
     var destPath = this.props.destPath;
     var destClientPath = destPath + '/js/client/';
@@ -124,33 +124,52 @@ module.exports = class extends Generator {
 
 
    
-    var data = {
-      appName: this.props.appName,
-      name: models[0].title,
-      useAuth0: false,
-      plural: _.pluralize(models[0].title),
-      camelCase: _.camelCase(models[0].title),
-      camelCasePlural: _.pluralize(_.camelCase(models[0].title)),
-      modalServiceName: _.pluralize(models[0].title) + 'ModelService',
-      serviceName: _.pluralize(models[0].title) + 'DataService',
-      listComponentTemplateUrl: _.pluralize(models[0].title) + 'ListTemplate', 
-      model: models[0],   
-      features: features,
-      _: _
-    };
-
+   
         
 
 
-      //features
-      components.generate(data, this, srcFeaturesPath, destFeaturesPath);
-      dataServices.generate(data, this, srcDataServicesPath, destFeaturesPath);
-      routes.generate(data, this, srcFeaturesPath, destFeaturesPath);
+     
+    
 
-      modals.generate(data, this, srcFeaturesPath, destFeaturesPath);      
+      for (var key in models) {  
+        
+        var data = {
+          appName: this.props.appName,
+          name: models[key].title,
+          useAuth0: false,
+          plural: _.pluralize(models[key].title),
+          camelCase: _.camelCase(models[key].title),
+          camelCasePlural: _.pluralize(_.camelCase(models[key].title)),
+          modalServiceName: _.pluralize(models[key].title) + 'ModelService',
+          serviceName: _.pluralize(models[key].title) + 'DataService',
+          listComponentTemplateUrl: _.pluralize(models[key].title) + 'ListTemplate', 
+          model: models[key],   
+          features: features,
+          data: models,
+          _: _
+        };
+    
+           var keyName = data.data[key].plural
+
+
+            //features
+           components.generate(data, this, srcFeaturesPath, destFeaturesPath);  
+           
+           dataServices.generate(data, this, srcDataServicesPath, destFeaturesPath);
+
+           routes.generate(data, this, srcFeaturesPath, destFeaturesPath);
+      }
+
+
+
+
+
+
+
+ modals.generate(data, this, srcFeaturesPath, destFeaturesPath);      
+
+
  
-
-     // serverCore.generate(data, this, srcServerPath, destServerPath + '/');
 
 
   }

@@ -1,0 +1,22 @@
+{
+    "title": "Setting",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "number"
+        },
+        "SettingsGroup": {
+            "type": "string"
+        },
+        "SubGroup": {
+            "type": "string"
+        },
+        "Name": {
+            "type": "string"
+        },  
+        "Value": {
+            "type": "string"
+        }  
+    }
+}
+

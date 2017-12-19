@@ -9,7 +9,7 @@ module.exports.generate = function (data, runner, _srcPath, destPath) {
   var _srcFieldsPath = _srcComponentsPath + '/Fields/';
 
 
-  var descComponentsPath = destPath + '/' +  data.model.title +'/';
+  var descComponentsPath = destPath + '/' +  data.model.plural +'/';
   var destListComponentsPath = descComponentsPath + 'List/';
   var destDetailsComponentsPath = descComponentsPath + 'Details/';
   var destHomeComponentsPath = descComponentsPath + 'Home/';
@@ -17,7 +17,7 @@ module.exports.generate = function (data, runner, _srcPath, destPath) {
 
   console.log(destPath);
 
-  copier.copyTpl(runner, _srcListComponentsPath + '_listComponent.js', destListComponentsPath + _.pluralize(_.camelCase(data.name)) + 'List.js', data);
+  copier.copyTpl(runner, _srcListComponentsPath + '_listComponent.js', destListComponentsPath +  data.model.plural + 'List.js', data);
   copier.copyTpl(runner, _srcListComponentsPath + '_listComponentTemplate.html', destListComponentsPath + _.pluralize(_.camelCase(data.name)) + 'ListTemplate.html', data);
 
   // Details

@@ -11,18 +11,24 @@ require('./client/Features/Home/Components/Navigation/mainLayout.js');
 require('./Client/Features/Home/routes.js');
 
 
-<% for (var key in data.model.properties) {  
+
+<% for (var key in data.data) {  
+ 
     
-    var keyName = data._.camelCase(key).replace(' ', '');
+    var keyName = data.data[key].plural
+    var name = data.data[key].title
+
+    console.log(name);
+
      %>
      
      
     require('./Client/Features/<%=keyName%>/routes.js');
-    require('./Client/Features/<%=keyName%>/Home/peopleHome');
-    require('./Client/Features/<%=keyName%>/List/peopleList');
-    require('./Client/Features/<%=keyName%>/Fields/personfields');
-    require('./Client/Features/<%=keyName%>/Details/personDetails');
-    require('./Client/Features/<%=keyName%>/PersondataService');
+    require('./Client/Features/<%=keyName%>/Home/<%=keyName%>Home');
+    require('./Client/Features/<%=keyName%>/List/<%=keyName%>List');
+    require('./Client/Features/<%=keyName%>/Fields/<%=name%>fields');
+    require('./Client/Features/<%=keyName%>/Details/<%=name%>Details');
+    require('./Client/Features/<%=keyName%>/<%=name%>dataService');
     require('./Client/Features/<%=keyName%>/Modals/Services/ServicesController.js');
 
 

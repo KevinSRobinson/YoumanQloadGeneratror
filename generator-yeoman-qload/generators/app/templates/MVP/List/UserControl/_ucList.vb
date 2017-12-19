@@ -4,16 +4,16 @@ Imports Qload.Data.Manager
 Imports Qload.Winforms.CRM.Branches.List
 
 Public Class uc<%=data.name%>List
-         Implements <%=data.interfaceName%>
+       Implements <%=data.interfaceName%>
 
-          Private ReadOnly _repositoryManager As RepositoryManager
-         Private _selectedGridRow As Integer = 0
+       Private ReadOnly _repositoryManager As RepositoryManager
+       Private _selectedGridRow As Integer = 0
+       
 #Region "Constructors"
        Public Event SelectionChanged As EventHandler(Of EventArgs(Of <%=data.name%>ViewModel))   Implements <%=data.interfaceName%>.SelectionChanged
        Public Event Add As EventHandler(Of EventArgs) Implements <%=data.interfaceName%>.Add
+       Public Event Loading As EventHandler(Of EventArgs) Implements ISettingsListView.Loading
 #End Region
-
-
 
 #Region "Constructors"
 
@@ -25,19 +25,13 @@ Public Class uc<%=data.name%>List
             Me.Dock = DockStyle.Fill
             _repositoryManager = repositoryManager
 
-
-          '  Dim presenter = New EnquiriesListPresenter(Me, repositoryManager)
-
-           ' SetupView()
-
         End Sub
 
 #End Region
 
-
 #Region "Properties"
 
-        Public Property Loading As Boolean Implements <%=data.interfaceName%>.Loading
+        Public Property IsLoading As Boolean Implements <%=data.interfaceName%>.IsLoading
 
         Public Property <%=data.plural%> As List(Of <%=data.name%>ViewModel) Implements <%=data.interfaceName%>.<%=data.plural%>
             Get
@@ -51,8 +45,13 @@ Public Class uc<%=data.name%>List
             End Set
         End Property
 
-
-
 #End Region
+
+#Region "Private Methods"
+        Public Sub LoadData() Implements ISettingsListView.LoadData
+           RaiseEvent Loading(nothing, Nothing)
+        End Sub
+#End Region
+
 
 End Class

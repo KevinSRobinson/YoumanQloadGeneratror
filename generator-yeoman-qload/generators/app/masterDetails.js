@@ -21,6 +21,9 @@ module.exports.generate = function(runner, basepath, data) {
   var _srcInterfaceFile = 'MVP/masterDetails/_IMasterDetailsView.vb'
   var _destInterfaceFile = featureFolderName + '/MasterDetails/' + interfaceName + '.vb'
 
+  console.log("Master")
+  console.log("----------------")
+
   //copy the user control
   copier.copyTpl(runner,_srcCodebehindFile, _destCodebehindFile, data);
   copier.copyTpl(runner,_srcDesignerFile, _destDesignerFile, data);

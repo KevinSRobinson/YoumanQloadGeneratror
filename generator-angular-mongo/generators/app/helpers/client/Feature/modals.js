@@ -7,7 +7,7 @@ module.exports.generate = function (data, runner, srcPath, destPath) {
   var _srcCreateUpdatePath = srcPath +  '/Feature/Modals/CreateUpdate/';
   var _srcDeletePath = srcPath + '/Feature/Modals/Delete/';
 
-  var destPath = destPath + '/' + data.name + '/Modals/';
+  var destPath = destPath + '/' + data.plural + '/Modals/';
 
 
   // Names

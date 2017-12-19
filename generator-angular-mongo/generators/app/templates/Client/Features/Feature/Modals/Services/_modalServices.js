@@ -1,7 +1,7 @@
 ﻿var <%=data.modalServiceName%> = function($uibModal){
 	 
-	let modifyTemplate = require('raw-loader!../CreateUpdate/createUpdatePersonModalTemplate.html');
-	let deleteTemplate = require('raw-loader!../Delete/deletePersonModalModalTempalte.html');
+	let modifyTemplate = require('raw-loader!../CreateUpdate/createUpdate<%=data.name%>ModalTemplate.html');
+	let deleteTemplate = require('raw-loader!../Delete/delete<%=data.name%>ModalModalTempalte.html');
 
 
 var add = function() {

@@ -1,18 +1,18 @@
 ﻿Imports System.Collections.Generic
 Imports Qload.Data
 
-Namespace CRM.<%=data.plural%>.List
+Namespace <%=data.plural%>.List
     Public Interface I<%=data.plural%>ListView
 
         Event Add As EventHandler(Of EventArgs)
-
+        Event Loading As EventHandler(Of EventArgs)
         Event SelectionChanged As EventHandler(Of EventArgs(of <%=data.name%>ViewModel))
 
         Property <%=data.plural%> As List(Of <%=data.name%>ViewModel)
 
-        Property Loading As Boolean        
+        Property IsLoading As Boolean        
 
-        Sub Load<%=data.plural%>ByCompanyId(companyId As Integer)
+        Sub LoadData()
 
     End Interface
 End Namespace

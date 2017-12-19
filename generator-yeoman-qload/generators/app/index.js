@@ -15,6 +15,7 @@ const mvpMasterDetails = require("./masterDetails.js");
 const viewModel = require("./viewModel.js");
 const repository = require("./repository.js");
 const add = require("./add.js");
+;
 
 module.exports = class extends Generator {
   // The name `constructor` is important here
@@ -38,6 +39,14 @@ module.exports = class extends Generator {
       'Welcome to the world-class ' + chalk.red('generator-yeoman-qload') + ' generator!'
     ));
 
+    var getchoice = function(name, checked){
+        return {
+          name: name,
+          value: name,
+          checked: checked
+        }
+    }
+
     const prompts = [{
         type: 'input',
         name: 'featureName',
@@ -47,15 +56,13 @@ module.exports = class extends Generator {
         type: 'checkbox',
         name: 'features',
         message: 'Select Features',
-        choices: [{
-            name: 'Repository',
-            value: 'Repository',
-            checked: false
-          },
+        choices: [
+          getchoice('Repository', true),
+          getchoice('ListPresenter', true),
           {
             name: 'ViewModel',
             value: 'ViewModel',
-            checked: false
+            checked: true
           },
           {
             name: 'Add',
@@ -70,27 +77,27 @@ module.exports = class extends Generator {
           {
             name: 'Edit',
             value: 'Edit',
-            checked: true
+            checked: false
           },
           {
             name: 'List',
             value: 'List',
-            checked: false
+            checked: true
           },
           {
             name: 'MasterDeails',
             value: 'MasterDeails',
-            checked: false
+            checked: true
           },
           {
             name: 'Create',
             value: 'Create',
-            checked: true
+            checked: false
           },
           {
             name: 'WebApi',
             value: 'WebApi',
-            checked: true
+            checked: false
           }
         ]
       }
@@ -113,7 +120,7 @@ module.exports = class extends Generator {
   writing() {
 
 
-    var model = require('./lookuplist.json');
+    var model = require('./models/settings.json');
 
 
     var data = {
@@ -132,21 +139,18 @@ module.exports = class extends Generator {
       }
     };
 
-<<<<<<< HEAD
-    var basepath = "C:/QloadGenerated/";
-=======
-    var basepath = "C:/DevBranch/Qload.Winforms/Entertainment/";
->>>>>>> d4b5a3d5798a45901a0641d11d34edb70e024299
+    var basepath = "C:/NewWork/Projects/Qload/FPM-Qload/DevBranch-InvoiceQueries/Qload.Winforms/Settings/";
 
-    if (_.includes(this.props.features, 'WebApi')) {
+    var options = this.props.features
+    var propertySelected = function(options, property){
+        return _.includes(options, property)
+    }
+
+    if (propertySelected(options, 'WebApi')) { 
       webapi.generate(this, basepath, data);
     }
-
-    if (_.includes(this.props.features, 'List')) {
-      mvpList.generate(this, basepath, data);
-    }
-
-    if (_.includes(this.props.features, 'List')) {
+    
+    if (propertySelected(options, 'List')) {
       mvpList.generate(this, basepath, data);
     }
 
@@ -162,7 +166,7 @@ module.exports = class extends Generator {
       mvpEdit.generate(this, basepath, data);
     }
 
-    if (_.includes(this.props.features, 'Details')) {
+    if (propertySelected(options, 'MasterDetails')) {
       mvpMasterDetails.generate(this, basepath, data);
     }
 

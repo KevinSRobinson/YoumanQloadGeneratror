@@ -7,15 +7,11 @@ _.mixin(require("lodash-inflection"));
 
 module.exports.generate = function (runner, basepath, data) {
 
-  // var name = basepath + '/Data/' + runner.props.featureName + 's/';
-  // var userControlName = runner.props.featureName + 'Repo';
-  // var featureFolderName = basepath + '/Repos/';
+
+
   var featureFolderName = basepath + '/' + data.plural + '/';
   data.interfaceName = 'I' + data.plural + 'Repo';
   data.repositoryName = data.plural + 'Repo';
-
-
-
 
 
   var getViewModelPropertyGetFields = function () {
@@ -42,9 +38,10 @@ module.exports.generate = function (runner, basepath, data) {
      return returnValue;
   }
 
-
   data.GetViewModelFieldMappings = getViewModelPropertyGetFields;
   data.GetObjectToViewModelFieldMappings = getObjectToViewModelFieldMappings;
+
+
 
   ///////////////////////////////
   //Repository
